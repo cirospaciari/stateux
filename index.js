@@ -10,7 +10,7 @@ function Store() {
         this._callback_id = this._callback_id || 0;
 
         this._callback_id++;
-        var callback_id = this._callback_id;
+        const callback_id = this._callback_id;
 
         if (typeof action === "string") {
 
@@ -48,10 +48,10 @@ function Store() {
         this._state = state;
         this._hasSomeState = true;
 
-        var values = Object.values(this._subscriptions);
+        const values = Object.values(this._subscriptions);
 
-        for (var i in values) {
-            var callback = values[i];
+        for (let i in values) {
+            const callback = values[i];
 
             try {
                 callback(state, action);
@@ -65,9 +65,9 @@ function Store() {
 
 Store.create = function (props) {
 
-    var store = new Store();
+    const store = new Store();
 
-    for (var i in props) {
+    for (let i in props) {
         if (typeof props[i] == "function") {
             store[i] = props[i].bind(store);
         } else {
@@ -85,7 +85,7 @@ Store.create = function (props) {
 const useStore = (store, action) => {
     const { useState, useEffect } = react_instance || require('react');
 
-    let [state, setState] = useState(store.getState());
+    const [ state, setState ] = useState(store.getState());
 
     useEffect(() => {
         const unsubscribe = store.subscribe((value)=> {
