@@ -1,4 +1,4 @@
-
+let react_instance = null;
 function Store() {
 
     this.subscribe = function (callback, action) {
@@ -10,12 +10,12 @@ function Store() {
         this._callback_id = this._callback_id || 0;
 
         this._callback_id++;
-        const callback_id = this._callback_id;
+        var callback_id = this._callback_id;
 
         if (typeof action === "string") {
 
             this._subscriptions[callback_id] = (function (state, currentAction) {
-                if (currentAction === action) {
+                if (currentAction === action || action === null) {
                     return callback(state, currentAction);
                 }
             });
@@ -48,10 +48,10 @@ function Store() {
         this._state = state;
         this._hasSomeState = true;
 
-        const values = Object.values(this._subscriptions);
+        var values = Object.values(this._subscriptions);
 
-        for (let i in values) {
-            const callback = values[i];
+        for (var i in values) {
+            var callback = values[i];
 
             try {
                 callback(state, action);
@@ -65,9 +65,9 @@ function Store() {
 
 Store.create = function (props) {
 
-    const store = new Store();
+    var store = new Store();
 
-    for (let i in props) {
+    for (var i in props) {
         if (typeof props[i] == "function") {
             store[i] = props[i].bind(store);
         } else {
@@ -82,23 +82,39 @@ Store.create = function (props) {
     return store;
 }
 
-function useStore(store, action) {
-    const { useEffect, useState } = require('react');
-    const [state, setState] = useState(store.getState());
+const useStore = (store, action) => {
+    const { useState, useEffect } = react_instance || require('react');
+
+    let [state, setState] = useState(store.getState());
 
     useEffect(() => {
-        const unsubscribe = store.subscribe((value)=> setState(value), action);
+        const unsubscribe = store.subscribe((value)=> {
+            setState(()=> ({ ...value }));
+        } , action);
         return () => {
             // Clean up the subscription
             unsubscribe();
         };
     }, [store]);
+
     return state;
 }
 
+function createStore(props){
+    return Store.create(props);
+}
+
+function setReactInstance(react){
+    react_instance = react;
+}
+
 module.exports = {
-    "default": Store,
-    Store: Store,
-    createStore: Store.create,
-    useStore: useStore
-};
+    'default': Store,
+    Store,
+    createStore,
+    useStore,
+    setReactInstance
+}
+
+// export default Store;
+// export { Store, createStore, useStore };
