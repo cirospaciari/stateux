@@ -1,6 +1,6 @@
 {
   "name": "stateux",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Really simple Redux like lib without reducers for state control",
   "main": "index.js",
   "scripts": {
