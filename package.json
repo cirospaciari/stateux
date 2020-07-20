@@ -1,6 +1,6 @@
 {
   "name": "stateux",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Really simple Redux like lib without reducers for state control",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,10 @@
     "state",
     "control",
     "redux-like",
-    "react"
+    "react",
+    "React Context",
+    "state management",
+    "Redux"
   ],
   "author": "ciro.spaciari@gmail.com",
   "license": "MIT",
