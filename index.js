@@ -88,7 +88,15 @@ const useStore = (store, action) => {
     const [ state, setState ] = useState(store.getState());
 
     useEffect(() => {
+        let populate = false;
         const unsubscribe = store.subscribe((value)=> {
+            //ignores first setState because we use store.getState() for get the first stage
+            //this avoids 1 more render
+            if(!populate){
+                populate = true;
+                return;
+            }
+
             setState(()=> ({ ...value }));
         } , action);
         return () => {
