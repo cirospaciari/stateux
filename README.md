@@ -65,11 +65,6 @@ function TodoList(){
 
     const [state, setState] = useState({text: ''});
 
-
-    function updateText(e){
-        setState({ text : e.target.value });
-    }
-
     return (
             <div>
                 {todoList.items.map((item)=> {
@@ -81,7 +76,7 @@ function TodoList(){
                     </div>)
                 })}
 
-                <input type="text" defaultValue="" onChange={(e)=> updateText(e)}/>
+                <input type="text" defaultValue="" onChange={(e)=> setState({ text : e.target.value })}/>
                 <button onClick={()=> TodoListStore.add(state.text)}>
                     Add
                 </button>
@@ -118,10 +113,6 @@ function TodoList(){
         
     }, [TodoListStore])
 
-    function updateText(e){
-        setState({ text : e.target.value });
-    }
-
     return (
             <div>
                 {todoList.items.map((item)=> {
@@ -133,7 +124,7 @@ function TodoList(){
                     </div>)
                 })}
 
-                <input type="text" defaultValue="" onChange={(e)=> updateText(e)}/>
+                <input type="text" defaultValue="" onChange={(e)=> setState({ text : e.target.value })}/>
                 <button onClick={()=> TodoListStore.add(state.text)}>
                     Add
                 </button>
