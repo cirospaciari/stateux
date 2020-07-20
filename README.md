@@ -1,3 +1,15 @@
+[![npm package](https://nodei.co/npm/stateux.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/stateux/)
+
+[![NPM version](https://img.shields.io/npm/v/stateux.svg)](https://img.shields.io/npm/v/stateux.svg)
+[![NPM License](https://img.shields.io/npm/l/stateux.svg)](https://img.shields.io/npm/l/stateux.svg)
+[![NPM Downloads](https://img.shields.io/npm/dm/stateux.svg?maxAge=43200)](https://img.shields.io/npm/dm/stateux.svg?maxAge=43200)
+
+Support me for future versions:
+
+[![BMC](https://cdn.buymeacoffee.com/buttons/default-orange.png)](https://www.buymeacoffee.com/i2yBGw7)
+
+[![PAGSEGURO](https://stc.pagseguro.uol.com.br/public/img/botoes/doacoes/209x48-doar-assina.gif)](https://pag.ae/7VxyJphKt)
+
 # stateux
 Really simple Redux like lib without reducers for state control
 
